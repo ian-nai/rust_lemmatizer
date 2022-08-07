@@ -7,8 +7,15 @@ use std::fs;
 use std::error::Error;
 
 
-pub fn collect_args(filename: &str, dict_name: &str, file_output: &str) {
-    get_words(filename, dict_name, file_output);
+
+pub fn lemmatize_string(str_to_lemmatize: &str, dict_name: &str) {
+    get_words_from_string(str_to_lemmatize, dict_name);
+}
+
+pub fn get_words_from_string(str_to_lemmatize: &str, dict_name: &str) {
+    let mut split_str = str_to_lemmatize.split(" ");
+    let word_list: Vec<String> = split_str.collect::<Vec<&str>>();
+
 }
 
 pub fn get_words(filename: &str, dict_name: &str, file_output: &str) {

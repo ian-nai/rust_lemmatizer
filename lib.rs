@@ -79,7 +79,6 @@ pub fn process_data(word_list: Vec<String>, lemma_map: HashMap<String, String>, 
         output_lemmatized_csv(word_list, lemma_string);
     }
     else {
-        println!("{}", file_output);
         output_lemmatized_txt(lemma_string);
     }
 }
@@ -101,6 +100,6 @@ pub fn output_lemmatized_csv(word_list: Vec<String>, lemma_string: Vec<String>) 
         wtr.write_record(&[pair, pair2])?;
     }
 
-    wtr.flush();
+    wtr.flush()?;
     Ok(())
 }

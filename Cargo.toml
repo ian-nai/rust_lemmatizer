@@ -1,0 +1,18 @@
+[package]
+name = "rust_lemmatizer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Ian Goodale"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "rust_lemmatizer"
+path = "src/lib.rs"
+
+[[bin]]
+name = "get_lemmas"
+path = "src/bin/get_lemmas.rs"
+
+[dependencies]
+csv = "1.1"

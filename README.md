@@ -24,7 +24,8 @@ cargo run --bin get_lemmas "This is an example string." src/lemma_dict.csv csv
 
 ## Lemma Source and Formatting
 ### Source
-The list of lemmas included here was sourced from [this GitHub repo](https://github.com/skywind3000/lemma.en)
+The list of lemmas included here was sourced from [this GitHub repo.](https://github.com/skywind3000/lemma.en)
+
 The list was created by referencing the British Nation Corpus (BNC), NodeBox Linguistics and Yasumasa Someya's lemma list.
 From the original repo:
 >This lemma list is provided "as is" and is free to use for any research and/or educational purposes. The list currently contains 186,523 words (tokens) >in 84,487 lemma groups.

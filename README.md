@@ -3,7 +3,7 @@ A lemmatizing package written in Rust.
 
 ## How to Use
 ### On Files
-To lemmatize text in a file, run the get_lemmas script using the following arguments, specifying your filename, the path to your csv containing lemmas and their associated forms, your desired file format for the output file, and the "file" command to specify that you're passing in a file rather than string:
+To lemmatize text in a file, run the get_lemmas script using the following arguments. Specify your filename, the path to your csv containing a list of lemmas and their associated forms, your desired file format for the output file, and the "file" command to specify that you're passing in a file rather than a string:
 ```
 cargo run --bin get_lemmas [YOUR FILENAME] [PATH TO LEMMA FILE] [FILE OUTPUT - txt or csv] file
 ```
@@ -13,7 +13,7 @@ cargo run --bin get_lemmas src/lemma_example.txt src/lemma_dict.csv csv file
 ```
 
 ### Strings
-To lemmatize a string, pass a similar command to the one for files listed above. Just sub in your string for the filename and omit the "file" command:
+To lemmatize a string, pass a command similar to the one for files listed above. Just substitute in your string for the filename and omit the "file" at the end of the command:
 ```
 cargo run --bin get_lemmas ["YOUR STRING"] [PATH TO LEMMA FILE] [FILE OUTPUT - txt or csv]
 ```
@@ -22,9 +22,9 @@ For example:
 cargo run --bin get_lemmas "This is an example string." src/lemma_dict.csv csv 
 ```
 
-## Lemma Source and Formatting
+## Lemma List and Formatting
 ### Source
-The list of lemmas included here was sourced from [this GitHub repo.](https://github.com/skywind3000/lemma.en)
+The list of lemmas included here was sourced from [this GitHub repo](https://github.com/skywind3000/lemma.en) by [Lin Wei.](https://github.com/skywind3000) 
 
 The list was created by referencing the British Nation Corpus (BNC), NodeBox Linguistics and Yasumasa Someya's lemma list.
 From the original repo:

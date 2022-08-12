@@ -14,7 +14,7 @@ An example command would be:
 cargo run --bin get_lemmas src/lemma_example.txt src/lemma_dict.csv csv 
 ```
 
-### Strings
+### On Strings
 To lemmatize a string, run the get_lemmas_from_string script. Pass the following command, specifying your string and the file containing the list of lemmas and their forms.
 ```
 cargo run --bin get_lemmas_from_string ["YOUR STRING"] [PATH TO LEMMA FILE]

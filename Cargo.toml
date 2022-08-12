@@ -6,9 +6,10 @@ authors = ["Ian Goodale"]
 description = "A lemmatizing package for use with a .csv dictionary of lemmas and their corresponding words."
 readme = "README.md"
 repository = "https://github.com/ian-nai/rust_lemmatizer"
-license = "GNU General Public License v3.0"
-keywords = ["NLP", "natural language processing", "lemmatization"]
+license = "GPL-3.0-or-later"
+keywords = ["NLP", "lemmatization"]
 categories = ["text-processing"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
 name = "rust_lemmatizer"

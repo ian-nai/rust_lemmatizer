@@ -5,18 +5,18 @@ use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+//
+// pub fn string_or_file(filename: &str, dict_name: &str, file_output: &str, input_format: &str) {
+//     if input_format == "file" {
+//         get_words(filename, dict_name, file_output);
+//     } else {
+//         get_words_from_string(filename, dict_name);
+//     }
+// }
 
-pub fn string_or_file(filename: &str, dict_name: &str, file_output: &str, input_format: &str) {
-    if input_format == "file" {
-        get_words(filename, dict_name, file_output);
-    } else {
-        get_words_from_string(filename, dict_name);
-    }
-}
-
-pub fn get_words_from_string(filename: &str, dict_name: &str) {
+pub fn get_words_from_string(string_to_analyze: &str, dict_name: &str) {
     let mut word_list: Vec<String> = Vec::new();
-    for split_word in filename.split(&[' ', '\''][..]) {
+    for split_word in string_to_analyze.split(&[' ', '\''][..]) {
         word_list.push(split_word.to_string());
     }
     get_lemma_from_string(word_list, dict_name);

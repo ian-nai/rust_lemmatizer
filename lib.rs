@@ -15,8 +15,6 @@ pub fn string_or_file(filename: &str, dict_name: &str, file_output: &str, input_
 }
 
 pub fn get_words_from_string(filename: &str, dict_name: &str) {
-    //let split_str = filename.split(" ");
-    // let mut split_str = filename.split("'");
     let mut word_list: Vec<String> = Vec::new();
     for split_word in filename.split(&[' ', '\''][..]) {
         word_list.push(split_word.to_string());
@@ -75,23 +73,28 @@ pub fn process_data_from_string(word_list: Vec<String>, lemma_map: HashMap<Strin
 }
 
 pub fn get_words(filename: &str, dict_name: &str, file_output: &str) {
-    let reader = BufReader::new(File::open(filename).expect("Cannot open file.txt"));
+    let reader = BufReader::new(File::open(filename).expect("Cannot open file"));
 
     let mut word_list: Vec<String> = Vec::new();
+    let mut original_text: Vec<String> = Vec::new();
 
     for line in reader.lines() {
         let mut line_words: Vec<String> = Vec::new();
+        let mut unsplit_words: Vec<String> = Vec::new();
         for word in line.unwrap().split_whitespace() {
+            unsplit_words.push(word.to_string());
             for split_word in word.split(&[' ', '\''][..]) {
                 line_words.push(split_word.to_string());
             }
         }
         word_list.push(line_words.join(" "));
+        original_text.push(unsplit_words.join(" "));
+
     }
-    get_lemma(word_list, dict_name, file_output);
+    get_lemma(word_list, dict_name, file_output, original_text);
 }
 
-pub fn get_lemma(word_list: Vec<String>, dict_name: &str, file_output: &str) {
+pub fn get_lemma(word_list: Vec<String>, dict_name: &str, file_output: &str, original_text: Vec<String>) {
     let dict_lines = vec![dict_name];
 
     let mut lemma_map: HashMap<String, String> = HashMap::new();
@@ -105,10 +108,10 @@ pub fn get_lemma(word_list: Vec<String>, dict_name: &str, file_output: &str) {
             lemma_map.insert(lemma.into(), derivatives.into());
         }
     }
-    process_data(word_list, lemma_map, file_output);
+    process_data(word_list, lemma_map, file_output, original_text);
 }
 
-pub fn process_data(word_list: Vec<String>, lemma_map: HashMap<String, String>, file_output: &str) {
+pub fn process_data(word_list: Vec<String>, lemma_map: HashMap<String, String>, file_output: &str, original_text: Vec<String>) {
     let mut lemma_string: Vec<String> = Vec::new();
 
     for line in &word_list {
@@ -137,7 +140,9 @@ pub fn process_data(word_list: Vec<String>, lemma_map: HashMap<String, String>, 
         lemma_string.push(lemma_line.join(" "));
     }
     if file_output == "csv" {
-        output_lemmatized_csv(word_list, lemma_string);
+        if let Err(e) = output_lemmatized_csv(original_text, lemma_string) {
+        eprintln!("{}", e);
+        }
     } else {
         output_lemmatized_txt(lemma_string);
     }
@@ -152,10 +157,10 @@ pub fn output_lemmatized_txt(lemma_string: Vec<String>) {
 }
 
 pub fn output_lemmatized_csv(
-    word_list: Vec<String>,
+    original_text: Vec<String>,
     lemma_string: Vec<String>,
 ) -> Result<(), Box<dyn Error>> {
-    let combined_vector = word_list.into_iter().zip(lemma_string).collect::<Vec<_>>();
+    let combined_vector = original_text.into_iter().zip(lemma_string).collect::<Vec<_>>();
 
     let mut wtr = csv::Writer::from_path("lemmatized.csv")?;
     wtr.write_record(&["Original Text", "Lemmatized Text"])?;

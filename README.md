@@ -5,9 +5,9 @@ A lemmatizing package written in Rust.
 ### On Files
 To lemmatize text in a file, run the get_lemmas script using the following arguments. This script saved to a file named "lemmatized.csv" or "lemmatized.txt" depending on user input.
 
-Specify your filename, the path to your csv containing a list of lemmas and their associated forms, and your desired file format for the output file.
+Specify your filename, the path to your csv containing a list of lemmas and their associated forms, and your desired return format (csv, txt, or a Vec<String>).
 ```
-cargo run --bin get_lemmas [YOUR FILENAME] [PATH TO LEMMA FILE] [FILE OUTPUT - txt or csv]
+cargo run --bin get_lemmas [YOUR FILENAME] [PATH TO LEMMA FILE] [OUTPUT - txt, csv, or vec]
 ```
 An example command would be:
 ```
@@ -15,14 +15,31 @@ cargo run --bin get_lemmas src/lemma_example.txt src/lemma_dict.csv csv
 ```
 
 ### On Strings
-To lemmatize a string, run the get_lemmas_from_string script. Pass the following command, specifying your string and the file containing the list of lemmas and their forms.
+To lemmatize a string, run the get_lemmas_from_string script. Pass the following command, specifying your string, the file containing the list of lemmas and their forms, and your desired return format (csv, txt, or a Vec<String>).
 ```
-cargo run --bin get_lemmas_from_string ["YOUR STRING"] [PATH TO LEMMA FILE]
+cargo run --bin get_lemmas_from_string ["YOUR STRING"] [PATH TO LEMMA FILE] [OUTPUT - txt, csv, or vec]
+
 ```
 For example:
 ```
-cargo run --bin get_lemmas_from_string "This is an example string." src/lemma_dict.csv
+cargo run --bin get_lemmas_from_string "This is an example string." src/lemma_dict.csv vec
 ```
+
+### To use in your own project
+For running on a file:
+```
+use rust_lemmatizer::get_words;
+
+get_words(filename, dict_name, file_output);
+```
+
+For running on a string:
+```
+use rust_lemmatizer::get_words_from_string;
+
+get_words_from_string(string_to_analyze, dict_name, return_type);
+```
+
 
 ## Lemma List and Formatting
 ### Source

@@ -26,14 +26,14 @@ cargo run --bin get_lemmas_from_string "This is an example string." src/lemma_di
 ```
 
 ### To use in your own project
-For running on a file:
+For lemmatizing a file:
 ```
 use rust_lemmatizer::get_words;
 
 get_words(filename, dict_name, file_output);
 ```
 
-For running on a string:
+For lemmatizing on a string:
 ```
 use rust_lemmatizer::get_words_from_string;
 
